@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Publish a Tutorial</title>
+<meta name="description" content="Add a new one-page tutorial to this site using only the GitHub website. No code editor needed.">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../" aria-label="All tutorials">← All</a>
+    <a class="brand" href="#top">Publish a tutorial</a>
+    <div class="progress" aria-live="polite">
+      <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+      <span class="progress-label" id="progressLabel">0 of 4 steps</span>
+    </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">Theme</button>
+  </div>
+</header>
+
+<div class="layout" id="top">
+
+  <nav class="toc" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#before">Before you start</a></li>
+      <li><a href="#step-1">1. Copy the template</a></li>
+      <li><a href="#step-2">2. Write your content</a></li>
+      <li><a href="#step-3">3. List it on the home page</a></li>
+      <li><a href="#step-4">4. Check it live</a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section id="overview">
+      <div class="eyebrow">Example tutorial</div>
+      <h1>How to publish a new tutorial on this site</h1>
+      <p class="lede">Add a one-page tutorial like this one, straight from the GitHub website. You won't need to install anything.</p>
+      <ul class="meta">
+        <li>⏱ <strong>15 min</strong></li>
+        <li>🎯 <strong>No technical skills needed</strong></li>
+        <li>🗓 Updated <strong>September 2026</strong></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="learn-title">
+      <h2 id="learn-title">What you'll be able to do</h2>
+      <ul class="goals">
+        <li><strong>Create a tutorial page</strong><span>Start from a template that already has the layout, progress bar and dark mode.</span></li>
+        <li><strong>Fill it in</strong><span>Replace the yellow placeholders with your own steps.</span></li>
+        <li><strong>Publish it</strong><span>Make it appear on the home page for everyone.</span></li>
+      </ul>
+    </section>
+
+    <section id="before">
+      <h2>Before you start</h2>
+      <p>Check that you have these before you begin:</p>
+      <div class="card">
+        <ul class="checklist">
+          <li><input type="checkbox" id="pre-1" data-persist><label for="pre-1"><strong>A GitHub account.</strong> Sign up for free at github.com.</label></li>
+          <li><input type="checkbox" id="pre-2" data-persist><label for="pre-2"><strong>Write access to this repository.</strong> Ask the repository owner to add you as a collaborator.</label></li>
+          <li><input type="checkbox" id="pre-3" data-persist><label for="pre-3"><strong>Your tutorial outline.</strong> A title, the steps in order and a few screenshots.</label></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="step" id="step-1">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <div>
+          <h2>Copy the template</h2>
+          <p class="step-why">The template already contains every section a good tutorial needs.</p>
+        </div>
+      </div>
+      <ol class="instructions">
+        <li>Open the repository on GitHub and go into the <span class="btn-label">tutorials</span> folder.</li>
+        <li>Open <span class="btn-label">_template.html</span>, then click the <span class="btn-label">Copy raw file</span> icon.</li>
+        <li>Go back to the folder, click <span class="btn-label">Add file</span> → <span class="btn-label">Create new file</span>.</li>
+        <li>Name it with lowercase words and dashes, for example <kbd>set-up-alerts.html</kbd>, and paste the template.</li>
+      </ol>
+      <div class="callout tip">
+        <span class="callout-title">Tip</span>
+        <p>The file name becomes part of the web address, so keep it short and descriptive.</p>
+      </div>
+      <div class="callout result">
+        <span class="callout-title">You should now see</span>
+        <p>A new file in the editor, full of placeholders in square brackets.</p>
+      </div>
+      <label class="done-toggle"><input type="checkbox" data-step="step-1"> Mark step 1 as done</label>
+    </section>
+
+    <section class="step" id="step-2">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <div>
+          <h2>Write your content</h2>
+          <p class="step-why">Placeholders show up in yellow, so nothing unfinished slips through.</p>
+        </div>
+      </div>
+      <ol class="instructions">
+        <li>Replace every text in <kbd>[square brackets]</kbd> with your own words.</li>
+        <li>Once a placeholder is filled in, remove the <kbd>&lt;span class="fill"&gt;</kbd> around it.</li>
+        <li>To add a step, copy a whole <kbd>&lt;section class="step"&gt;</kbd> block, give it the next number, and add a matching link in the table of contents.</li>
+        <li>Delete the yellow banner at the top of the page.</li>
+        <li>Click <span class="btn-label">Commit changes</span>.</li>
+      </ol>
+      <div class="callout warn">
+        <span class="callout-title">Watch out</span>
+        <p>Each step's <kbd>id</kbd> (like <kbd>step-3</kbd>) must match its checkbox <kbd>data-step</kbd> and its table-of-contents link. Otherwise the progress bar won't count it.</p>
+      </div>
+      <div class="callout result">
+        <span class="callout-title">You should now see</span>
+        <p>Your file saved in the <kbd>tutorials</kbd> folder.</p>
+      </div>
+      <label class="done-toggle"><input type="checkbox" data-step="step-2"> Mark step 2 as done</label>
+    </section>
+
+    <section class="step" id="step-3">
+      <div class="step-head">
+        <div class="step-num">3</div>
+        <div>
+          <h2>List it on the home page</h2>
+          <p class="step-why">Readers find tutorials from the home page, so yours needs a card there.</p>
+        </div>
+      </div>
+      <ol class="instructions">
+        <li>Open <span class="btn-label">index.html</span> at the root of the repository and click the pencil icon.</li>
+        <li>Find the list that starts with <kbd>&lt;ul class="tutorial-grid"</kbd>.</li>
+        <li>Copy one <kbd>&lt;li&gt;</kbd> card, then change its link, tag, title, summary and duration.</li>
+        <li>Click <span class="btn-label">Commit changes</span>.</li>
+      </ol>
+      <div class="callout result">
+        <span class="callout-title">You should now see</span>
+        <p>A new card in the code, pointing to <kbd>tutorials/your-file.html</kbd>.</p>
+      </div>
+      <label class="done-toggle"><input type="checkbox" data-step="step-3"> Mark step 3 as done</label>
+    </section>
+
+    <section class="step" id="step-4">
+      <div class="step-head">
+        <div class="step-num">4</div>
+        <div>
+          <h2>Check it live</h2>
+          <p class="step-why">GitHub rebuilds the site after each commit. It usually takes about a minute.</p>
+        </div>
+      </div>
+      <ol class="instructions">
+        <li>Open the <span class="btn-label">Actions</span> tab and wait for the latest run to show a green check.</li>
+        <li>Open the site and refresh the home page.</li>
+        <li>Click your card and read the tutorial once from top to bottom, on your phone too.</li>
+      </ol>
+      <div class="callout result">
+        <span class="callout-title">You're done</span>
+        <p>Your tutorial is live. Share the link, and update the “Updated” date whenever you change it.</p>
+      </div>
+      <label class="done-toggle"><input type="checkbox" data-step="step-4"> Mark step 4 as done</label>
+    </section>
+
+    <section id="troubleshooting">
+      <h2>Troubleshooting</h2>
+      <p>Something doesn't look right? Find what you see below.</p>
+      <details>
+        <summary>The page shows no colours or layout</summary>
+        <div>The stylesheet link is broken. Make sure the file is directly inside the <kbd>tutorials</kbd> folder and still has <kbd>href="../assets/css/theme.css"</kbd>.</div>
+      </details>
+      <details>
+        <summary>I get a 404 “page not found”</summary>
+        <div>Wait a minute for the build to finish, then check the web address matches the file name exactly, including <kbd>.html</kbd>.</div>
+      </details>
+      <details>
+        <summary>A step doesn't count in the progress bar</summary>
+        <div>Its checkbox is missing <kbd>data-step</kbd>, or the value doesn't match the step's <kbd>id</kbd>.</div>
+      </details>
+    </section>
+
+    <section id="glossary">
+      <h2>Glossary</h2>
+      <p>Words you'll see on GitHub, explained simply.</p>
+      <dl>
+        <div><dt>Repository</dt><dd>The project folder on GitHub that holds every file of this site.</dd></div>
+        <div><dt>Commit</dt><dd>Saving a change, with a short note on what you changed.</dd></div>
+        <div><dt>GitHub Pages</dt><dd>The free GitHub service that turns the repository into a website.</dd></div>
+      </dl>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="inner">
+    <span>Maintained by rahendablog</span>
+    <span>Last reviewed September 2026</span>
+  </div>
+</footer>
+
+<script src="../assets/js/tutorial.js"></script>
+</body>
+</html>

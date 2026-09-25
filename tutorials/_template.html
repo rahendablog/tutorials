@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- EDIT: page title and description -->
+<title>[Product] Guide for PMs</title>
+<meta name="description" content="A step-by-step guide to [Product] for product managers. No technical background needed.">
+<link rel="stylesheet" href="../assets/css/theme.css">
+</head>
+<body>
+
+<!-- EDIT: delete this banner once every yellow placeholder has been replaced -->
+<div class="template-note">Template: replace every <strong>yellow highlight</strong>, then delete this banner.</div>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="back" href="../" aria-label="All tutorials">← All</a>
+    <!-- EDIT: product name -->
+    <a class="brand" href="#top">[Product] Guide</a>
+    <div class="progress" aria-live="polite">
+      <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+      <span class="progress-label" id="progressLabel">0 of 5 steps</span>
+    </div>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">Theme</button>
+  </div>
+</header>
+
+<div class="layout" id="top">
+
+  <nav class="toc" aria-label="On this page">
+    <p>On this page</p>
+    <ol>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#before">Before you start</a></li>
+      <li><a href="#step-1">1. <span class="fill">First step</span></a></li>
+      <li><a href="#step-2">2. <span class="fill">Second step</span></a></li>
+      <li><a href="#step-3">3. <span class="fill">Third step</span></a></li>
+      <li><a href="#step-4">4. <span class="fill">Fourth step</span></a></li>
+      <li><a href="#step-5">5. <span class="fill">Fifth step</span></a></li>
+      <li><a href="#troubleshooting">Troubleshooting</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#help">Get help</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ======================= OVERVIEW ======================= -->
+    <section id="overview">
+      <div class="eyebrow">Guide for product managers</div>
+      <h1>How to <span class="fill">[do the main task]</span> with <span class="fill">[Product]</span></h1>
+      <p class="lede"><span class="fill">[One sentence on what the reader can do by the end, e.g. "Set up your first dashboard and share it with your team, without writing code."]</span></p>
+      <ul class="meta">
+        <li>⏱ <strong><span class="fill">[15 min]</span></strong></li>
+        <li>🎯 <strong>No technical skills needed</strong></li>
+        <li>🗓 Updated <strong><span class="fill">[Month YYYY]</span></strong></li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="learn-title">
+      <h2 id="learn-title">What you'll be able to do</h2>
+      <ul class="goals">
+        <li><strong><span class="fill">[Outcome 1]</span></strong><span><span class="fill">[Why it helps you as a PM]</span></span></li>
+        <li><strong><span class="fill">[Outcome 2]</span></strong><span><span class="fill">[Why it helps you as a PM]</span></span></li>
+        <li><strong><span class="fill">[Outcome 3]</span></strong><span><span class="fill">[Why it helps you as a PM]</span></span></li>
+      </ul>
+    </section>
+
+    <!-- ======================= BEFORE YOU START ======================= -->
+    <section id="before">
+      <h2>Before you start</h2>
+      <p>Check that you have these before you begin:</p>
+      <div class="card">
+        <ul class="checklist">
+          <li><input type="checkbox" id="pre-1" data-persist><label for="pre-1"><strong>An account on <span class="fill">[Product]</span>.</strong> <span class="fill">[How to get one, e.g. "Ask your admin or sign up at example.com"]</span></label></li>
+          <li><input type="checkbox" id="pre-2" data-persist><label for="pre-2"><strong><span class="fill">[Access or permission needed]</span>.</strong> <span class="fill">[Who grants it]</span></label></li>
+          <li><input type="checkbox" id="pre-3" data-persist><label for="pre-3"><strong><span class="fill">[Something to have ready, e.g. a file or link]</span>.</strong> <span class="fill">[Where to find it]</span></label></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ======================= STEPS =======================
+         Each step has the same parts:
+         title, why it matters, instructions, screenshot, tip or warning,
+         expected result, and a "mark as done" checkbox.
+         To add a step: copy a whole <section class="step">, give it the next id
+         (step-6), and add a matching link in the table of contents at the top. -->
+
+    <section class="step" id="step-1">
+      <div class="step-head">
+        <div class="step-num">1</div>
+        <div>
+          <h2><span class="fill">[Step title, e.g. "Sign in and find your workspace"]</span></h2>
+          <p class="step-why"><span class="fill">[Why this step matters, in one sentence]</span></p>
+        </div>
+      </div>
+      <ol class="instructions">
+        <li>Go to <span class="fill">[URL or app name]</span>.</li>
+        <li>Click <span class="btn-label"><span class="fill">[Button name]</span></span> in the <span class="fill">[top-right corner]</span>.</li>
+        <li><span class="fill">[Next action]</span></li>
+      </ol>
+      <figure>
+        <!-- EDIT: replace this <div class="shot"> with <img src="images/step-1.png" alt="Describe the screenshot"> -->
+        <div class="shot">Screenshot: <span class="fill">[what the reader should see]</span></div>
+        <figcaption><span class="fill">[Caption, e.g. "The home screen after signing in"]</span></figcaption>
+      </figure>
+      <div class="callout tip">
+        <span class="callout-title">Tip</span>
+        <p><span class="fill">[A shortcut or good habit]</span></p>
+      </div>
+      <div class="callout result">
+        <span class="callout-title">You should now see</span>
+        <p><span class="fill">[What the reader sees when the step worked]</span></p>
+      </div>
+      <label class="done-toggle"><input type="checkbox" data-step="step-1"> Mark step 1 as done</label>
+    </section>
+
+    <section class="step" id="step-2">
+      <div class="step-head">
+        <div class="step-num">2</div>
+        <div>
+          <h2><span class="fill">[Step title]</span></h2>
+          <p class="step-why"><span class="fill">[Why this step matters]</span></p>
+        </div>
+      </div>
+      <ol class="instructions">
+        <li><span class="fill">[Action]</span></li>
+        <li><span class="fill">[Action]</span></li>
+        <li><span class="fill">[Action]</span></li>
+      </ol>
+      <figure>
+        <div class="shot">Screenshot: <span class="fill">[what the reader should see]</span></div>
+        <figcaption><span class="fill">[Caption]</span></figcaption>
+      </figure>
+      <div class="callout warn">
+        <span class="callout-title">Watch out</span>
+        <p><span class="fill">[A common mistake and how to avoid it]</span></p>
+      </div>
+      <div class="callout result">
+        <span class="callout-title">You should now see</span>
+        <p><span class="fill">[Expected result]</span></p>
+      </div>
+      <label class="done-toggle"><input type="checkbox" data-step="step-2"> Mark step 2 as done</label>
+    </section>
+
+    <section class="step" id="step-3">
+      <div class="step-head">
+        <div class="step-num">3</div>
+        <div>
+          <h2><span class="fill">[Step title]</span></h2>
+          <p class="step-why"><span class="fill">[Why this step matters]</span></p>
+        </div>
+      </div>
+      <ol class="instructions">
+        <li><span class="fill">[Action]</span></li>
+        <li><span class="fill">[Action]</span></li>
+        <li><span class="fill">[Action]</span></li>
+      </ol>
+      <figure>
+        <div class="shot">Screenshot: <span class="fill">[what the reader should see]</span></div>
+        <figcaption><span class="fill">[Caption]</span></figcaption>
+      </figure>
+      <div class="callout tip">
+        <span class="callout-title">Tip</span>
+        <p><span class="fill">[Tip]</span></p>
+      </div>
+      <div class="callout result">
+        <span class="callout-title">You should now see</span>
+        <p><span class="fill">[Expected result]</span></p>
+      </div>
+      <label class="done-toggle"><input type="checkbox" data-step="step-3"> Mark step 3 as done</label>
+    </section>
+
+    <section class="step" id="step-4">
+      <div class="step-head">
+        <div class="step-num">4</div>
+        <div>
+          <h2><span class="fill">[Step title]</span></h2>
+          <p class="step-why"><span class="fill">[Why this step matters]</span></p>
+        </div>
+      </div>
+      <ol class="instructions">
+        <li><span class="fill">[Action]</span></li>
+        <li><span class="fill">[Action]</span></li>
+        <li><span class="fill">[Action]</span></li>
+      </ol>
+      <figure>
+        <div class="shot">Screenshot: <span class="fill">[what the reader should see]</span></div>
+        <figcaption><span class="fill">[Caption]</span></figcaption>
+      </figure>
+      <div class="callout result">
+        <span class="callout-title">You should now see</span>
+        <p><span class="fill">[Expected result]</span></p>
+      </div>
+      <label class="done-toggle"><input type="checkbox" data-step="step-4"> Mark step 4 as done</label>
+    </section>
+
+    <section class="step" id="step-5">
+      <div class="step-head">
+        <div class="step-num">5</div>
+        <div>
+          <h2><span class="fill">[Step title, e.g. "Share it with your team"]</span></h2>
+          <p class="step-why"><span class="fill">[Why this step matters]</span></p>
+        </div>
+      </div>
+      <ol class="instructions">
+        <li><span class="fill">[Action]</span></li>
+        <li><span class="fill">[Action]</span></li>
+        <li><span class="fill">[Action]</span></li>
+      </ol>
+      <figure>
+        <div class="shot">Screenshot: <span class="fill">[what the reader should see]</span></div>
+        <figcaption><span class="fill">[Caption]</span></figcaption>
+      </figure>
+      <div class="callout result">
+        <span class="callout-title">You're done</span>
+        <p><span class="fill">[Recap of what the reader has built or achieved, and a suggested next thing to try]</span></p>
+      </div>
+      <label class="done-toggle"><input type="checkbox" data-step="step-5"> Mark step 5 as done</label>
+    </section>
+
+    <!-- ======================= TROUBLESHOOTING ======================= -->
+    <section id="troubleshooting">
+      <h2>Troubleshooting</h2>
+      <p>Something doesn't look right? Find what you see below.</p>
+      <details>
+        <summary><span class="fill">[Symptom, e.g. "I don't see the Create button"]</span></summary>
+        <div><span class="fill">[Likely cause and the fix, in plain words]</span></div>
+      </details>
+      <details>
+        <summary><span class="fill">[Symptom]</span></summary>
+        <div><span class="fill">[Cause and fix]</span></div>
+      </details>
+      <details>
+        <summary><span class="fill">[Symptom]</span></summary>
+        <div><span class="fill">[Cause and fix]</span></div>
+      </details>
+    </section>
+
+    <!-- ======================= GLOSSARY ======================= -->
+    <section id="glossary">
+      <h2>Glossary</h2>
+      <p>Words you'll see in <span class="fill">[Product]</span>, explained simply.</p>
+      <dl>
+        <div><dt><span class="fill">[Term]</span></dt><dd><span class="fill">[Plain-language definition, with an everyday comparison if it helps]</span></dd></div>
+        <div><dt><span class="fill">[Term]</span></dt><dd><span class="fill">[Definition]</span></dd></div>
+        <div><dt><span class="fill">[Term]</span></dt><dd><span class="fill">[Definition]</span></dd></div>
+        <div><dt><span class="fill">[Term]</span></dt><dd><span class="fill">[Definition]</span></dd></div>
+      </dl>
+    </section>
+
+    <!-- ======================= FAQ ======================= -->
+    <section id="faq">
+      <h2>Frequently asked questions</h2>
+      <details>
+        <summary><span class="fill">[Question, e.g. "Can I undo a change?"]</span></summary>
+        <div><span class="fill">[Answer]</span></div>
+      </details>
+      <details>
+        <summary><span class="fill">[Question, e.g. "Who can see what I create?"]</span></summary>
+        <div><span class="fill">[Answer]</span></div>
+      </details>
+      <details>
+        <summary><span class="fill">[Question]</span></summary>
+        <div><span class="fill">[Answer]</span></div>
+      </details>
+    </section>
+
+    <!-- ======================= HELP ======================= -->
+    <section id="help">
+      <h2>Get help</h2>
+      <div class="help-grid">
+        <!-- EDIT: replace each href="#" with a real link -->
+        <a href="#"><div class="card"><strong>Ask the team</strong><span><span class="fill">[Slack/Teams channel]</span></span></div></a>
+        <a href="#"><div class="card"><strong>Official docs</strong><span><span class="fill">[Link to product documentation]</span></span></div></a>
+        <a href="#"><div class="card"><strong>Book a session</strong><span><span class="fill">[Office hours or contact person]</span></span></div></a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="inner">
+    <!-- EDIT: owner and contact -->
+    <span>Maintained by <span class="fill">[Name / team]</span></span>
+    <span>Last reviewed <span class="fill">[Month YYYY]</span></span>
+  </div>
+</footer>
+
+<script src="../assets/js/tutorial.js"></script>
+</body>
+</html>

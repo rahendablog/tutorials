@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutorials</title>
+<meta name="description" content="Short, step-by-step tutorials, each on a single page. No technical background needed.">
+<link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="./">Tutorials</a>
+    <span style="flex:1"></span>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode">Theme</button>
+  </div>
+</header>
+
+<main class="home">
+
+  <section class="home-hero">
+    <div class="eyebrow">Step-by-step guides</div>
+    <h1>Learn one thing, on one page.</h1>
+    <p class="lede">Each tutorial walks you through a single task from start to finish, with plain words, screenshots and a progress bar that remembers where you stopped.</p>
+  </section>
+
+  <section aria-labelledby="all-title">
+    <div class="home-tools">
+      <h2 id="all-title">All tutorials</h2>
+      <input class="search" id="search" type="search" placeholder="Filter tutorials…" aria-label="Filter tutorials">
+    </div>
+
+    <!-- To add a tutorial: copy one <li> below and change the link, tag, title, summary and duration. -->
+    <ul class="tutorial-grid" id="tutorials">
+      <li>
+        <a href="tutorials/publish-a-tutorial.html">
+          <div class="card">
+            <span class="tag">Getting started</span>
+            <h3>Publish a new tutorial on this site</h3>
+            <p>Add your own one-page tutorial using only the GitHub website.</p>
+            <span class="card-meta">⏱ 15 min · 4 steps</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+    <p class="empty" id="empty" hidden>No tutorial matches your search.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <span>Maintained by rahendablog</span>
+    <span>MIT License</span>
+  </div>
+</footer>
+
+<script src="assets/js/tutorial.js"></script>
+<script>
+(function () {
+  var input = document.getElementById('search');
+  var items = Array.prototype.slice.call(document.querySelectorAll('#tutorials > li'));
+  var empty = document.getElementById('empty');
+  input.addEventListener('input', function () {
+    var q = input.value.trim().toLowerCase();
+    var shown = 0;
+    items.forEach(function (li) {
+      var match = li.textContent.toLowerCase().indexOf(q) !== -1;
+      li.hidden = !match;
+      if (match) shown++;
+    });
+    empty.hidden = shown > 0;
+  });
+})();
+</script>
+</body>
+</html>
