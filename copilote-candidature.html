@@ -71,11 +71,11 @@
     font-size: 1rem;
     line-height: 1.4;
     font-family: "Open Sans", sans-serif;
-    color: rgba(255,255,255,.45);
+    color: rgba(255,255,255,.28);
     text-shadow: 0 1px 2px rgba(0,0,0,.5);
   }
   .cover-credit a { color: inherit; text-decoration: underline; }
-  .cover-credit a:hover { color: rgba(255,255,255,.9); }
+  .cover-credit a:hover { color: rgba(255,255,255,.7); }
 
   .main-nav {
     position: absolute;
@@ -95,22 +95,6 @@
     color: #fff;
     text-decoration: none;
   }
-  .menu-button {
-    font-family: "Open Sans", sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    color: #fff;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,.6);
-    border-radius: 3px;
-    padding: 9px 16px;
-    cursor: pointer;
-    transition: background .2s ease, color .2s ease;
-  }
-  .menu-button:hover { background: #fff; color: #222; }
-
   .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 720px; }
   .eyebrow {
     font-family: "Open Sans", sans-serif;
@@ -154,7 +138,7 @@
     border: 1px solid rgba(255,255,255,.6);
     border-radius: 3px;
     transition: all .2s ease;
-    animation: fadeDown 1s .4s both;
+    animation: fadeDown 1s .4s both, ctaSlideDown 2.6s 1.4s ease-in-out infinite;
   }
   .header-button:hover { color: #222; background: #fff; border-color: #fff; }
 
@@ -165,68 +149,22 @@
     transform: translateX(-50%);
     width: 32px; height: 32px;
     color: rgba(255,255,255,.75);
-    animation: bounce 2.2s infinite;
+    animation: arrowSlideDown 4.2s ease-in-out infinite;
   }
   .scroll-down:hover { color: #fff; }
 
   @keyframes fadeDown { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+  @keyframes ctaSlideDown { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(8px); } }
+  @keyframes arrowSlideDown { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
   @media (prefers-reduced-motion: reduce) {
     .eyebrow, .page-title, .page-description, .header-button { animation: none; }
     .scroll-down { animation: none; }
   }
 
-  /* ================= Slide-in index ================= */
   .site-wrapper {
     position: relative;
     background: var(--surface);
-    transition: transform .3s ease;
   }
-  body.nav-open .site-wrapper { transform: translateX(-240px); }
-  body.nav-open { overflow-x: hidden; }
-
-  .index-panel {
-    position: fixed;
-    top: 0; right: 0; bottom: 0;
-    width: 240px;
-    background: var(--black);
-    transform: translateX(240px);
-    transition: transform .3s ease;
-    z-index: 20;
-    padding: 90px 8% 5%;
-  }
-  body.nav-open .index-panel { transform: translateX(0); }
-  .index-panel .nav-title {
-    position: absolute; top: 40px; left: 30px;
-    font-family: "Open Sans", sans-serif;
-    font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
-    color: rgba(255,255,255,.45);
-  }
-  .index-panel .close-btn {
-    position: absolute; top: 30px; right: 30px;
-    background: none; border: none; color: rgba(255,255,255,.6);
-    font-size: 22px; line-height: 1; cursor: pointer; padding: 4px;
-  }
-  .index-panel .close-btn:hover { color: #fff; }
-  .index-panel ul { list-style: none; margin: 0; padding: 0; }
-  .index-panel li a {
-    display: block;
-    font-family: "Open Sans", sans-serif;
-    font-size: 1.05rem;
-    color: #b8b8b8;
-    text-decoration: none;
-    padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    transition: color .15s ease;
-  }
-  .index-panel li a:hover { color: #fff; }
-
-  .nav-cover {
-    display: none;
-    position: fixed; inset: 0; z-index: 15;
-    background: rgba(0,0,0,.25);
-  }
-  body.nav-open .nav-cover { display: block; }
 
   /* ================= Content rhythm (post-style) ================= */
   .inner { width: 86%; max-width: 710px; margin: 0 auto; }
@@ -252,33 +190,45 @@
     margin-top: 10px;
   }
 
-  /* verdict mock, styled like a quoted excerpt card */
-  .verdict-mock {
-    margin-top: 2.5rem;
-    background: var(--paper);
+  /* ================= Report preview widget ================= */
+  .report-widget {
+    position: relative;
+    margin-top: 1.5rem;
+    height: 460px;
+    overflow: hidden;
     border: 1px solid var(--line-2);
-    border-radius: 4px;
-    padding: 1.75rem 2rem;
+    border-radius: 6px;
+    background: var(--paper);
+    box-shadow: 0 1px 2px rgba(20,20,20,.04);
   }
-  .verdict-mock .head {
-    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-    padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--line-2);
+  .report-widget iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    pointer-events: none;
+  }
+  .report-widget::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, rgba(247,250,251,0), var(--paper) 78%);
+    pointer-events: none;
+  }
+  .report-widget-cta {
+    position: absolute;
+    left: 0; right: 0; bottom: 16px;
+    z-index: 2;
+    padding: 0 20px;
+    text-align: center;
     font-family: "Open Sans", sans-serif;
+    font-size: .76rem;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: var(--muted);
   }
-  .verdict-mock .who { font-size: .82rem; color: var(--muted); }
-  .score-pill {
-    font-family: "Inconsolata", monospace; font-weight: 600; font-size: 1rem;
-    background: var(--accent-tint); color: #2678b8;
-    border-radius: 3px; padding: 4px 12px; white-space: nowrap;
-  }
-  .verdict-mock p { margin: 0 0 12px; font-size: .98rem; line-height: 1.65; }
-  .verdict-mock .tag {
-    font-family: "Open Sans", sans-serif; font-size: .74rem; font-weight: 700;
-    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
-    margin: 18px 0 8px;
-  }
-  .verdict-mock ul { margin: 0; padding-left: 1.2em; font-size: .93rem; color: var(--ink); }
-  .verdict-mock li { margin-bottom: 5px; }
 
   .callout {
     margin-top: 2.5rem;
@@ -289,6 +239,49 @@
   .callout svg { flex: none; margin-top: 3px; color: var(--accent); }
   .callout .t { font-family: "Open Sans", sans-serif; font-weight: 700; font-size: .95rem; margin-bottom: 3px; color: var(--ink-strong); }
   .callout .d { color: var(--muted); font-size: .92rem; font-family: "Open Sans", sans-serif; }
+
+  .prereq {
+    margin-top: 2.5rem;
+    background: var(--paper);
+    border: 1px solid var(--line-2);
+    border-radius: 6px;
+    padding: 1.5rem 1.75rem;
+  }
+  .prereq .t {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: .74rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .prereq ol { margin: 0; padding-left: 1.2em; color: var(--ink); font-size: .98rem; line-height: 1.65; }
+  .prereq li { margin-bottom: 10px; }
+  .prereq li:last-child { margin-bottom: 0; }
+  .prereq .fork-btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    margin-top: 6px;
+    padding: 7px 14px;
+    font-family: "Open Sans", sans-serif;
+    font-size: .82rem; font-weight: 700;
+    color: var(--ink-strong);
+    background: var(--surface);
+    border: 1px solid var(--ink-strong);
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all .2s ease;
+  }
+  .prereq .fork-btn:hover { background: var(--ink-strong); color: #fff; }
+  .prereq .shot {
+    display: block;
+    margin: 10px 0 0;
+    max-width: 480px;
+    border: 1px solid var(--line-2);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .prereq .shot img { display: block; width: 100%; height: auto; }
 
   /* ================= Steps ================= */
   .steps { margin-top: 3rem; }
@@ -338,6 +331,39 @@
     cursor: not-allowed;
     color: var(--muted-2);
     border-color: var(--line-2);
+  }
+
+  /* ================= Report modal ================= */
+  .report-modal { position: fixed; inset: 0; z-index: 50; display: none; }
+  .report-modal.is-open { display: block; }
+  .report-modal-backdrop { position: absolute; inset: 0; background: rgba(17,17,17,.55); }
+  .report-modal-panel {
+    position: relative;
+    margin: 4vh auto;
+    width: min(920px, 92vw);
+    height: 92vh;
+    background: var(--surface);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,.35);
+  }
+  .report-modal-panel iframe { display: block; width: 100%; height: 100%; border: 0; }
+  .report-modal-close {
+    position: absolute; top: 10px; right: 10px; z-index: 2;
+    width: 34px; height: 34px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 20px; line-height: 1;
+    font-family: "Open Sans", sans-serif;
+    color: var(--ink-strong);
+    background: var(--surface);
+    border: 1px solid var(--line-2);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .report-modal-close:hover { background: var(--ink-strong); color: #fff; border-color: var(--ink-strong); }
+  @media (max-width: 560px) {
+    .report-modal-panel { margin: 0; width: 100vw; height: 100vh; border-radius: 0; }
   }
   .step .body .once {
     font-family: "Open Sans", sans-serif;
@@ -408,7 +434,6 @@
 <header class="main-header">
   <nav class="main-nav">
     <a class="brand-mark" href="./">career-ops</a>
-    <button class="menu-button" id="openNav" aria-controls="indexPanel" aria-expanded="false">Menu</button>
   </nav>
   <div class="hero-inner">
     <div class="eyebrow">Guide d'utilisation</div>
@@ -422,52 +447,33 @@
   <p class="cover-credit">Photo by <a href="https://unsplash.com/@little_klein?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Vitolda Klein</a> on <a href="https://unsplash.com/photos/person-holding-black-red-yellow-and-green-round-analog-clock-L3zuSWaCjSk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a>.</p>
 </header>
 
-<span class="nav-cover" id="navCover"></span>
-<div class="index-panel" id="indexPanel">
-  <span class="nav-title">Sommaire</span>
-  <button class="close-btn" id="closeNav" aria-label="Fermer">&times;</button>
-  <ul>
-    <li><a href="#etapes">Le parcours</a></li>
-    <li><a href="#confiance">Ce qu'il fait / ne fait jamais</a></li>
-    <li><a href="#faq">Questions fréquentes</a></li>
-    <li><a href="./">← Tous les tutoriels</a></li>
-  </ul>
-</div>
 
 <div class="site-wrapper" id="siteWrapper">
   <main id="content">
 
     <section class="block" id="etapes">
       <div class="inner">
-        <p class="kicker sans">Ce qui se passe, automatiquement, entre votre message et vos documents prêts.</p>
+        <div class="report-widget" aria-label="Aperçu d'un rapport d'analyse généré automatiquement">
+          <iframe src="report-example.html" title="Aperçu d'un rapport d'analyse" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+          <span class="report-widget-cta">Extrait d'un rapport généré automatiquement — liens désactivés dans cet exemple</span>
+        </div>
         <h2 class="block-title">Le parcours auto-pipeline, étape par étape</h2>
 
-        <div class="verdict-mock">
-          <div class="head">
-            <span class="who">Exemple de réponse, après avoir collé un lien</span>
-            <span class="score-pill">4.2 / 5</span>
-          </div>
-          <p><strong>Bon compromis.</strong> Le poste correspond à votre profil produit, l'entreprise recrute activement, et la fourchette de salaire est dans votre cible.</p>
-          <div class="tag">Trois raisons</div>
-          <ul>
-            <li>Votre expérience sur la roadmap et le discovery colle à 8 des 10 exigences du poste</li>
-            <li>L'annonce est récente et le processus de recrutement semble sérieux</li>
-            <li>Le mode hybride correspond à ce que vous avez indiqué</li>
-          </ul>
-          <div class="tag">Trois risques</div>
-          <ul>
-            <li>Aucune expérience directe sur leur outil analytique principal</li>
-            <li>Le salaire annoncé n'est pas confirmé, à négocier en entretien</li>
-            <li>Poste ouvert depuis 45 jours — processus possiblement plus long que la moyenne</li>
-          </ul>
-        </div>
-
-        <div class="callout">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
-          <div>
-            <div class="t">Avant de commencer</div>
-            <div class="d">Claude Code Desktop doit être connecté à votre espace career-ops, et votre CV prêt à joindre à votre premier message.</div>
-          </div>
+        <div class="prereq">
+          <div class="t">Prérequis</div>
+          <ol>
+            <li>Claude Desktop doit être connecté à GitHub via MCP (à configurer dans <strong>Paramètres → Connecteurs</strong>).</li>
+            <li>Forkez le dépôt sur GitHub :<br>
+              <a class="fork-btn" href="https://github.com/biloute00/career-ops-non-tech/fork" target="_blank" rel="noopener">
+                Forker sur GitHub
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </a>
+            </li>
+            <li>Ouvrez ensuite le mode Claude Code.</li>
+            <li>Configurez Claude Code pour créer un environnement isolé (Cloud).
+              <span class="shot"><img src="assets/images/configure-claude-code-env.gif" alt="Démonstration : sélection d'un environnement Cloud isolé dans Claude Code"></span>
+            </li>
+          </ol>
         </div>
 
         <div class="steps">
@@ -507,7 +513,7 @@
             <div class="num">6</div>
             <div class="body">
               <p>Il génère aussi un rapport d'analyse complet, en page HTML — le score, les raisons, les risques, tout est dedans.</p>
-              <button type="button" class="btn-report" disabled>
+              <button type="button" class="btn-report" id="openReportBtn" aria-haspopup="dialog" aria-controls="reportModal">
                 Voir un exemple de rapport
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
               </button>
@@ -573,21 +579,44 @@
   </footer>
 </div>
 
+<div class="report-modal" id="reportModal" aria-hidden="true">
+  <div class="report-modal-backdrop" id="reportModalBackdrop"></div>
+  <div class="report-modal-panel" role="dialog" aria-modal="true" aria-label="Exemple de rapport d'analyse">
+    <button type="button" class="report-modal-close" id="reportModalClose" aria-label="Fermer">&times;</button>
+    <iframe id="reportModalFrame" title="Exemple de rapport d'analyse"></iframe>
+  </div>
+</div>
+
 <script>
   (function () {
-    var body = document.body;
-    var openBtn = document.getElementById('openNav');
-    var closeBtn = document.getElementById('closeNav');
-    var cover = document.getElementById('navCover');
-    function openNav() { body.classList.add('nav-open'); openBtn.setAttribute('aria-expanded', 'true'); }
-    function closeNav() { body.classList.remove('nav-open'); openBtn.setAttribute('aria-expanded', 'false'); }
-    openBtn.addEventListener('click', openNav);
-    closeBtn.addEventListener('click', closeNav);
-    cover.addEventListener('click', closeNav);
-    document.querySelectorAll('.index-panel a').forEach(function (a) {
-      a.addEventListener('click', closeNav);
+    var openBtn = document.getElementById('openReportBtn');
+    var modal = document.getElementById('reportModal');
+    var closeBtn = document.getElementById('reportModalClose');
+    var backdrop = document.getElementById('reportModalBackdrop');
+    var frame = document.getElementById('reportModalFrame');
+    if (!openBtn || !modal) return;
+
+    function openModal() {
+      if (!frame.src) frame.src = 'report-example.html';
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      openBtn.focus();
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    backdrop.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
   })();
 </script>
+
 </body>
 </html>
