@@ -303,16 +303,64 @@
   .step .body p { margin: 0; color: var(--ink-strong); font-size: 1.08rem; line-height: 1.6; }
   .step .body .example {
     margin-top: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    max-width: 480px;
+    background: var(--paper);
+    border: 1px solid var(--line-2);
+    border-radius: 3px;
+    padding: 9px 10px 9px 12px;
+  }
+  .step .body .example code {
+    flex: 1;
     font-family: "Inconsolata", monospace;
     font-size: .85rem;
     line-height: 1.6;
     color: var(--muted);
-    background: var(--paper);
+    white-space: pre-wrap;
+  }
+  .copy-btn {
+    flex: none;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px;
+    margin-top: 1px;
+    padding: 0;
+    color: var(--muted);
+    background: var(--surface);
     border: 1px solid var(--line-2);
     border-radius: 3px;
-    padding: 9px 12px;
-    display: inline-block;
+    cursor: pointer;
+    transition: all .15s ease;
   }
+  .copy-btn:hover { color: var(--ink-strong); border-color: var(--ink-strong); }
+  .copy-btn.is-copied { color: var(--accent); border-color: var(--accent); }
+  .copy-btn svg { pointer-events: none; }
+  .copy-btn .icon-check { display: none; }
+  .copy-btn.is-copied .icon-copy { display: none; }
+  .copy-btn.is-copied .icon-check { display: block; }
+
+  .fyi {
+    margin-top: 2.5rem;
+    background: var(--paper);
+    border: 1px dashed var(--line-2);
+    border-radius: 6px;
+    padding: 1.4rem 1.6rem;
+  }
+  .fyi-badge {
+    display: inline-block;
+    font-family: "Open Sans", sans-serif;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: #2678b8;
+    background: var(--accent-tint);
+    border-radius: 999px;
+    padding: 3px 11px;
+    margin-bottom: 10px;
+  }
+  .fyi p { margin: 0; color: var(--ink); font-size: .96rem; line-height: 1.65; }
   .btn-report {
     display: inline-flex; align-items: center; gap: 9px;
     margin-top: 14px;
@@ -481,7 +529,14 @@
             <div class="num">1</div>
             <div class="body">
               <p>Vous envoyez le lien d'une offre avec votre CV en pièce jointe.</p>
-              <span class="example">« Je veux postuler à https://&lt;site-job&gt;/.<br>Mon CV est en pièce-jointe. »</span>
+              <span class="example">
+                <code>Je veux postuler à https://&lt;site-job&gt;/.
+Mon CV est en pièce-jointe.</code>
+                <button type="button" class="copy-btn" data-copy-text="Je veux postuler à https://&lt;site-job&gt;/.&#10;Mon CV est en pièce-jointe." aria-label="Copier le texte">
+                  <svg class="icon-copy" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></svg>
+                  <svg class="icon-check" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+                </button>
+              </span>
             </div>
           </div>
           <div class="step">
@@ -506,12 +561,6 @@
           <div class="step">
             <div class="num">5</div>
             <div class="body">
-              <p>Il prépare un CV et une lettre de motivation adaptés à cette offre précise, prêts en PDF.</p>
-            </div>
-          </div>
-          <div class="step">
-            <div class="num">6</div>
-            <div class="body">
               <p>Il génère aussi un rapport d'analyse complet, en page HTML — le score, les raisons, les risques, tout est dedans.</p>
               <button type="button" class="btn-report" id="openReportBtn" aria-haspopup="dialog" aria-controls="reportModal">
                 Voir un exemple de rapport
@@ -519,6 +568,11 @@
               </button>
             </div>
           </div>
+        </div>
+
+        <div class="fyi">
+          <span class="fyi-badge">Bon à savoir</span>
+          <p>Le copilote prépare aussi un CV et une lettre de motivation adaptés à cette offre précise, prêts en PDF — sans étape supplémentaire de votre part.</p>
         </div>
       </div>
     </section>
@@ -614,6 +668,35 @@
     backdrop.addEventListener('click', closeModal);
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+  })();
+
+  (function () {
+    document.querySelectorAll('.copy-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = btn.getAttribute('data-copy-text') || '';
+        function showCopied() {
+          btn.classList.add('is-copied');
+          btn.setAttribute('aria-label', 'Copié');
+          setTimeout(function () {
+            btn.classList.remove('is-copied');
+            btn.setAttribute('aria-label', 'Copier le texte');
+          }, 1800);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(showCopied);
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(ta);
+          showCopied();
+        }
+      });
     });
   })();
 </script>
