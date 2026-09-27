@@ -50,14 +50,32 @@
     align-items: center;
     text-align: center;
     padding: 0 24px;
-    background:
+    background-color: #14181b;
+    background-image:
       radial-gradient(ellipse 90% 70% at 50% 0%, rgba(91,164,229,.22), transparent 60%),
       linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.55)),
-      repeating-linear-gradient(135deg, #1a1f22 0px, #1a1f22 2px, #14181b 2px, #14181b 4px),
-      linear-gradient(160deg, #23292d 0%, #14181b 55%, #0d1012 100%);
+      url(assets/images/background1.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     color: #fff;
     overflow: hidden;
   }
+
+  .cover-credit {
+    position: absolute;
+    z-index: 100;
+    right: 8px;
+    bottom: 6px;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-family: "Open Sans", sans-serif;
+    color: rgba(255,255,255,.45);
+    text-shadow: 0 1px 2px rgba(0,0,0,.5);
+  }
+  .cover-credit a { color: inherit; text-decoration: underline; }
+  .cover-credit a:hover { color: rgba(255,255,255,.9); }
 
   .main-nav {
     position: absolute;
@@ -401,6 +419,7 @@
   <a class="scroll-down" href="#content" aria-label="Défiler vers le contenu">
     <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12l8 8 8-8"/></svg>
   </a>
+  <p class="cover-credit">Photo by <a href="https://unsplash.com/@little_klein?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Vitolda Klein</a> on <a href="https://unsplash.com/photos/person-holding-black-red-yellow-and-green-round-analog-clock-L3zuSWaCjSk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" target="_blank" rel="noopener">Unsplash</a>.</p>
 </header>
 
 <span class="nav-cover" id="navCover"></span>
