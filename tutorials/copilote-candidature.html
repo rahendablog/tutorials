@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Votre copilote de candidature</title>
+<meta name="description" content="Guide d'utilisation du copilote de candidature career-ops : collez une offre, recevez un avis honnête sur vos chances avant de postuler.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Open+Sans:wght@400;700&family=Inconsolata:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #3a4145;
+    --ink-strong: #2e2e2e;
+    --black: #111111;
+    --muted: #9eabb3;
+    --muted-2: #bbc7cc;
+    --line: #ebf2f6;
+    --line-2: #e7eef2;
+    --paper: #f7fafb;
+    --surface: #ffffff;
+    --accent: #5ba4e5;
+    --accent-tint: #d6edff;
+    color-scheme: light;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: "Merriweather", Georgia, serif;
+    font-size: 16px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sans { font-family: "Open Sans", -apple-system, "Segoe UI", sans-serif; }
+  .mono { font-family: "Inconsolata", ui-monospace, SFMono-Regular, monospace; }
+  a { color: inherit; }
+
+  h1, h2, h3 { color: var(--ink-strong); line-height: 1.2; text-wrap: balance; margin: 0; }
+
+  /* ================= Hero ================= */
+  .main-header {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 24px;
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 0%, rgba(91,164,229,.22), transparent 60%),
+      linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.55)),
+      repeating-linear-gradient(135deg, #1a1f22 0px, #1a1f22 2px, #14181b 2px, #14181b 4px),
+      linear-gradient(160deg, #23292d 0%, #14181b 55%, #0d1012 100%);
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 36px;
+    z-index: 3;
+  }
+  .brand-mark {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+  }
+  .menu-button {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: #fff;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,.6);
+    border-radius: 3px;
+    padding: 9px 16px;
+    cursor: pointer;
+    transition: background .2s ease, color .2s ease;
+  }
+  .menu-button:hover { background: #fff; color: #222; }
+
+  .hero-inner { position: relative; z-index: 2; width: 100%; max-width: 720px; }
+  .eyebrow {
+    font-family: "Open Sans", sans-serif;
+    font-size: 12.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: rgba(255,255,255,.65);
+    margin-bottom: 22px;
+    animation: fadeDown .6s .1s both;
+  }
+  .page-title {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 6.5vw, 4.6rem);
+    letter-spacing: -1px;
+    color: #fff;
+    animation: fadeDown .7s .2s both;
+  }
+  .page-description {
+    font-family: "Merriweather", serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+    line-height: 1.55;
+    color: rgba(255,255,255,.82);
+    max-width: 46ch;
+    margin: 20px auto 0;
+    animation: fadeDown .9s .3s both;
+  }
+  .header-button {
+    display: inline-block;
+    margin-top: 2.75rem;
+    padding: 0 26px;
+    height: 44px;
+    line-height: 42px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,.6);
+    border-radius: 3px;
+    transition: all .2s ease;
+    animation: fadeDown 1s .4s both;
+  }
+  .header-button:hover { color: #222; background: #fff; border-color: #fff; }
+
+  .scroll-down {
+    position: absolute;
+    z-index: 3;
+    bottom: 34px; left: 50%;
+    transform: translateX(-50%);
+    width: 32px; height: 32px;
+    color: rgba(255,255,255,.75);
+    animation: bounce 2.2s infinite;
+  }
+  .scroll-down:hover { color: #fff; }
+
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+  @media (prefers-reduced-motion: reduce) {
+    .eyebrow, .page-title, .page-description, .header-button { animation: none; }
+    .scroll-down { animation: none; }
+  }
+
+  /* ================= Slide-in index ================= */
+  .site-wrapper {
+    position: relative;
+    background: var(--surface);
+    transition: transform .3s ease;
+  }
+  body.nav-open .site-wrapper { transform: translateX(-240px); }
+  body.nav-open { overflow-x: hidden; }
+
+  .index-panel {
+    position: fixed;
+    top: 0; right: 0; bottom: 0;
+    width: 240px;
+    background: var(--black);
+    transform: translateX(240px);
+    transition: transform .3s ease;
+    z-index: 20;
+    padding: 90px 8% 5%;
+  }
+  body.nav-open .index-panel { transform: translateX(0); }
+  .index-panel .nav-title {
+    position: absolute; top: 40px; left: 30px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    color: rgba(255,255,255,.45);
+  }
+  .index-panel .close-btn {
+    position: absolute; top: 30px; right: 30px;
+    background: none; border: none; color: rgba(255,255,255,.6);
+    font-size: 22px; line-height: 1; cursor: pointer; padding: 4px;
+  }
+  .index-panel .close-btn:hover { color: #fff; }
+  .index-panel ul { list-style: none; margin: 0; padding: 0; }
+  .index-panel li a {
+    display: block;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.05rem;
+    color: #b8b8b8;
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    transition: color .15s ease;
+  }
+  .index-panel li a:hover { color: #fff; }
+
+  .nav-cover {
+    display: none;
+    position: fixed; inset: 0; z-index: 15;
+    background: rgba(0,0,0,.25);
+  }
+  body.nav-open .nav-cover { display: block; }
+
+  /* ================= Content rhythm (post-style) ================= */
+  .inner { width: 86%; max-width: 710px; margin: 0 auto; }
+
+  section.block {
+    width: 86%; max-width: 710px; margin: 4.5rem auto 0;
+    padding-bottom: 4rem;
+    border-bottom: var(--line) 1px solid;
+  }
+  section.block:last-of-type { border-bottom: none; }
+
+  .kicker {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1.4rem; line-height: 1.6;
+    color: var(--muted);
+    margin: 1.5rem 0 0;
+  }
+  h2.block-title {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    letter-spacing: -.5px;
+    margin-top: 10px;
+  }
+
+  /* verdict mock, styled like a quoted excerpt card */
+  .verdict-mock {
+    margin-top: 2.5rem;
+    background: var(--paper);
+    border: 1px solid var(--line-2);
+    border-radius: 4px;
+    padding: 1.75rem 2rem;
+  }
+  .verdict-mock .head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    padding-bottom: 14px; margin-bottom: 14px; border-bottom: 1px solid var(--line-2);
+    font-family: "Open Sans", sans-serif;
+  }
+  .verdict-mock .who { font-size: .82rem; color: var(--muted); }
+  .score-pill {
+    font-family: "Inconsolata", monospace; font-weight: 600; font-size: 1rem;
+    background: var(--accent-tint); color: #2678b8;
+    border-radius: 3px; padding: 4px 12px; white-space: nowrap;
+  }
+  .verdict-mock p { margin: 0 0 12px; font-size: .98rem; line-height: 1.65; }
+  .verdict-mock .tag {
+    font-family: "Open Sans", sans-serif; font-size: .74rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+    margin: 18px 0 8px;
+  }
+  .verdict-mock ul { margin: 0; padding-left: 1.2em; font-size: .93rem; color: var(--ink); }
+  .verdict-mock li { margin-bottom: 5px; }
+
+  .callout {
+    margin-top: 2.5rem;
+    display: flex; gap: 14px;
+    border-left: 3px solid var(--accent);
+    padding: 4px 0 4px 18px;
+  }
+  .callout svg { flex: none; margin-top: 3px; color: var(--accent); }
+  .callout .t { font-family: "Open Sans", sans-serif; font-weight: 700; font-size: .95rem; margin-bottom: 3px; color: var(--ink-strong); }
+  .callout .d { color: var(--muted); font-size: .92rem; font-family: "Open Sans", sans-serif; }
+
+  /* ================= Steps ================= */
+  .steps { margin-top: 3rem; }
+  .step {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 22px;
+    padding: 2rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .step:first-child { border-top: none; padding-top: 0; }
+  .step .num {
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+    font-size: 2.1rem;
+    color: var(--muted-2);
+    line-height: 1;
+  }
+  .step .body p { margin: 0; color: var(--ink-strong); font-size: 1.08rem; line-height: 1.6; }
+  .step .body .example {
+    margin-top: 12px;
+    font-family: "Inconsolata", monospace;
+    font-size: .85rem;
+    line-height: 1.6;
+    color: var(--muted);
+    background: var(--paper);
+    border: 1px solid var(--line-2);
+    border-radius: 3px;
+    padding: 9px 12px;
+    display: inline-block;
+  }
+  .btn-report {
+    display: inline-flex; align-items: center; gap: 9px;
+    margin-top: 14px;
+    padding: 0 20px; height: 42px;
+    font-family: "Open Sans", sans-serif;
+    font-size: .78rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--ink-strong);
+    background: transparent;
+    border: 1px solid var(--ink-strong);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .2s ease;
+  }
+  .btn-report:hover:not(:disabled) { background: var(--ink-strong); color: #fff; }
+  .btn-report:disabled {
+    cursor: not-allowed;
+    color: var(--muted-2);
+    border-color: var(--line-2);
+  }
+  .step .body .once {
+    font-family: "Open Sans", sans-serif;
+    font-size: .74rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px; display: block;
+  }
+
+  /* ================= Trust grid ================= */
+  .trust-grid {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 3rem;
+  }
+  .trust-col h3 {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700; font-size: .8rem;
+    letter-spacing: .1em; text-transform: uppercase;
+    padding-bottom: 12px; margin-bottom: 12px;
+    border-bottom: 2px solid var(--ink-strong);
+  }
+  .trust-col.dont h3 { border-bottom-color: var(--muted-2); }
+  .trust-col ul { margin: 0; padding: 0; list-style: none; }
+  .trust-col li {
+    font-size: .95rem; color: var(--ink);
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    display: flex; gap: 10px;
+  }
+  .trust-col li:first-child { border-top: none; padding-top: 0; }
+  .trust-col.do li::before { content: "✓"; color: var(--accent); flex: none; font-weight: 700; font-family: "Open Sans", sans-serif; }
+  .trust-col.dont li::before { content: "✕"; color: var(--muted); flex: none; font-weight: 700; font-family: "Open Sans", sans-serif; }
+
+  /* ================= FAQ ================= */
+  .faq-item { border-top: 1px solid var(--line); padding: 1.5rem 0; }
+  .faq-item:first-of-type { border-top: none; padding-top: 0; }
+  .faq-item summary {
+    cursor: pointer; list-style: none;
+    font-family: "Open Sans", sans-serif; font-weight: 700; font-size: 1.02rem; color: var(--ink-strong);
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after { content: "+"; color: var(--accent); font-size: 1.3rem; font-family: "Inconsolata", monospace; flex: none; }
+  .faq-item[open] summary::after { content: "–"; }
+  .faq-item p { margin: 14px 0 0; color: var(--ink); font-size: .98rem; max-width: 58ch; }
+
+  /* ================= Footer ================= */
+  footer.site-footer {
+    padding: 3rem 24px 4rem;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-size: .82rem;
+    color: var(--muted);
+  }
+  footer.site-footer .copyright { color: var(--ink-strong); font-weight: 700; margin-bottom: 4px; }
+
+  @media (max-width: 560px) {
+    .trust-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .step { grid-template-columns: 40px 1fr; gap: 14px; }
+    .step .num { font-size: 1.5rem; }
+    .main-nav { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="main-header">
+  <nav class="main-nav">
+    <a class="brand-mark" href="../">career-ops</a>
+    <button class="menu-button" id="openNav" aria-controls="indexPanel" aria-expanded="false">Menu</button>
+  </nav>
+  <div class="hero-inner">
+    <div class="eyebrow">Guide d'utilisation</div>
+    <h1 class="page-title">Votre copilote<br>de candidature</h1>
+    <p class="page-description">Collez une offre. Recevez un avis honnête sur vos chances — avant de perdre du temps à postuler.</p>
+    <a class="header-button" href="#etapes">Découvrir le parcours</a>
+  </div>
+  <a class="scroll-down" href="#content" aria-label="Défiler vers le contenu">
+    <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12l8 8 8-8"/></svg>
+  </a>
+</header>
+
+<span class="nav-cover" id="navCover"></span>
+<div class="index-panel" id="indexPanel">
+  <span class="nav-title">Sommaire</span>
+  <button class="close-btn" id="closeNav" aria-label="Fermer">&times;</button>
+  <ul>
+    <li><a href="#etapes">Le parcours</a></li>
+    <li><a href="#confiance">Ce qu'il fait / ne fait jamais</a></li>
+    <li><a href="#faq">Questions fréquentes</a></li>
+    <li><a href="../">← Tous les tutoriels</a></li>
+  </ul>
+</div>
+
+<div class="site-wrapper" id="siteWrapper">
+  <main id="content">
+
+    <section class="block" id="etapes">
+      <div class="inner">
+        <p class="kicker sans">Ce qui se passe, automatiquement, entre votre message et vos documents prêts.</p>
+        <h2 class="block-title">Le parcours auto-pipeline, étape par étape</h2>
+
+        <div class="verdict-mock">
+          <div class="head">
+            <span class="who">Exemple de réponse, après avoir collé un lien</span>
+            <span class="score-pill">4.2 / 5</span>
+          </div>
+          <p><strong>Bon compromis.</strong> Le poste correspond à votre profil produit, l'entreprise recrute activement, et la fourchette de salaire est dans votre cible.</p>
+          <div class="tag">Trois raisons</div>
+          <ul>
+            <li>Votre expérience sur la roadmap et le discovery colle à 8 des 10 exigences du poste</li>
+            <li>L'annonce est récente et le processus de recrutement semble sérieux</li>
+            <li>Le mode hybride correspond à ce que vous avez indiqué</li>
+          </ul>
+          <div class="tag">Trois risques</div>
+          <ul>
+            <li>Aucune expérience directe sur leur outil analytique principal</li>
+            <li>Le salaire annoncé n'est pas confirmé, à négocier en entretien</li>
+            <li>Poste ouvert depuis 45 jours — processus possiblement plus long que la moyenne</li>
+          </ul>
+        </div>
+
+        <div class="callout">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg>
+          <div>
+            <div class="t">Avant de commencer</div>
+            <div class="d">Claude Code Desktop doit être connecté à votre espace career-ops, et votre CV prêt à joindre à votre premier message.</div>
+          </div>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="num">1</div>
+            <div class="body">
+              <p>Vous envoyez le lien d'une offre avec votre CV en pièce jointe.</p>
+              <span class="example">« Je veux postuler à https://&lt;site-job&gt;/.<br>Mon CV est en pièce-jointe. »</span>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <div class="body">
+              <span class="once">La première fois seulement</span>
+              <p>Le copilote vous pose 5 questions sur votre recherche — salaire visé, postes cibles, autorisation de travail, etc. — pour calibrer toutes vos futures évaluations.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <div class="body">
+              <p>Il vérifie que l'offre est toujours active, puis compare le poste à votre profil, exigence par exigence.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">4</div>
+            <div class="body">
+              <p>Vous recevez un score sur 5, avec les raisons qui jouent pour vous et les risques à connaître.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">5</div>
+            <div class="body">
+              <p>Il prépare un CV et une lettre de motivation adaptés à cette offre précise, prêts en PDF.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">6</div>
+            <div class="body">
+              <p>Il génère aussi un rapport d'analyse complet, en page HTML — le score, les raisons, les risques, tout est dedans.</p>
+              <button type="button" class="btn-report" disabled>
+                Voir un exemple de rapport
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="confiance">
+      <div class="inner">
+        <p class="kicker sans">Ce qu'il faut savoir avant de lui faire confiance.</p>
+        <h2 class="block-title">Ce qu'il fait, ce qu'il ne fera jamais</h2>
+        <div class="trust-grid">
+          <div class="trust-col do">
+            <h3>Toujours</h3>
+            <ul>
+              <li>Vous dire franchement si un poste ne vous correspond pas</li>
+              <li>Citer votre CV mot pour mot, jamais d'expérience inventée</li>
+              <li>Vous laisser relire et corriger chaque document</li>
+              <li>Générer un rapport d'analyse HTML pour chaque offre évaluée</li>
+            </ul>
+          </div>
+          <div class="trust-col dont">
+            <h3>Jamais</h3>
+            <ul>
+              <li>Envoyer une candidature à votre place</li>
+              <li>Inventer une compétence ou un chiffre que vous n'avez pas</li>
+              <li>Vous pousser à postuler à un poste sous votre niveau minimum</li>
+              <li>Partager vos documents en dehors de votre espace de travail</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="faq">
+      <div class="inner">
+        <p class="kicker sans">En cas de doute.</p>
+        <h2 class="block-title">Questions fréquentes</h2>
+        <div class="faq-list" style="margin-top:2.5rem">
+          <details class="faq-item" open>
+            <summary>Dois-je tout réécrire moi-même ?</summary>
+            <p>Non. Le copilote prépare un brouillon complet du CV et de la lettre. Vous ajustez uniquement ce que vous voulez changer, rien n'est envoyé sans votre relecture.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Et si l'offre ne me correspond pas du tout ?</summary>
+            <p>Il vous le dit dès le score, avant que vous ne perdiez du temps sur des documents pour un poste qui ne vous convient pas.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Puis-je lui demander de changer ce qu'il cible ?</summary>
+            <p>Oui. Dites-lui simplement ce que vous cherchez — un autre type de poste, une autre ville, une fourchette de salaire différente — et il ajuste ses évaluations en conséquence.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="copyright">career-ops</div>
+    <div class="poweredby">Guide d'utilisation · usage personnel</div>
+  </footer>
+</div>
+
+<script>
+  (function () {
+    var body = document.body;
+    var openBtn = document.getElementById('openNav');
+    var closeBtn = document.getElementById('closeNav');
+    var cover = document.getElementById('navCover');
+    function openNav() { body.classList.add('nav-open'); openBtn.setAttribute('aria-expanded', 'true'); }
+    function closeNav() { body.classList.remove('nav-open'); openBtn.setAttribute('aria-expanded', 'false'); }
+    openBtn.addEventListener('click', openNav);
+    closeBtn.addEventListener('click', closeNav);
+    cover.addEventListener('click', closeNav);
+    document.querySelectorAll('.index-panel a').forEach(function (a) {
+      a.addEventListener('click', closeNav);
+    });
+  })();
+</script>
+</body>
+</html>
